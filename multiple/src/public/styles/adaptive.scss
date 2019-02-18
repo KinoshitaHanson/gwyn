@@ -1,0 +1,40 @@
+/*750适配*/
+#app {
+    .header {
+        height: 40px;
+        line-height: 40px;
+        .arrow-back {
+            top: 10px;
+            left: 2px;
+            border-width: 10px;
+            i {
+                top: -10px;
+                left: -8px;
+                border-width: 10px;
+            }
+        }
+        center {
+            width: 60%;
+            font-size: 18px;
+        }
+        .home-icon {
+            top: 50%;
+            right: 10px;
+            width: 22px;
+            height: 22px;
+            margin-top: -11px;
+        }
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 359px) {
+    html {
+        font-size: 533.33%;
+    }
+}
+
+@media screen and (min-width: 360px) and (max-width: 374px) {
+    html {
+        font-size: 600%;
+    }
+}

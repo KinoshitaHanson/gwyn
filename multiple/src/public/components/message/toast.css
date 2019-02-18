@@ -1,0 +1,226 @@
+/*弹框 开始*/
+.toast-layer {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 19891014;
+    display: none;
+}
+
+.toast-mask {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 300;
+    background: transparent;
+    display: none;
+}
+
+.toast-layer.show,
+.toast-layer.show .toast-mask {
+    display: block;
+}
+
+.has-header .toast-layer {
+    top: 40px;
+    height: 100%;
+    height: -moz-calc(100% - 40px);
+    height: -webkit-calc(100% - 40px);
+    height: calc(100% - 40px);
+}
+
+.toast-layer.show .toast-main {
+    -webkit-transform-origin: center center;
+    transform-origin: center center;
+    -webkit-animation: pulse .5s ease-in-out forwards;
+    animation: pulse .5s ease-in-out forwards;
+}
+
+.toast-main {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display: box;
+    display: -webkit-box;
+    display: -moz-box;
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    z-index: 320;
+}
+
+@-webkit-keyframes pulse {
+    0% {
+        -webkit-transform: scale3d(.85, .85, .85);
+        transform: scale3d(.85, .85, .85);
+    }
+    50% {
+        -webkit-transform: scale3d(1.02, 1.02, 1.02);
+        transform: scale3d(1.02, 1.02, 1.02);
+    }
+    100% {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1)
+    }
+}
+
+@keyframes pulse {
+    0% {
+        -webkit-transform: scale3d(.85, .85, .85);
+        -moz-transform: scale3d(.85, .85, .85);
+        transform: scale3d(.85, .85, .85);
+    }
+    50% {
+        -webkit-transform: scale3d(1.02, 1.02, 1.02);
+        -ms-transform: scale3d(1.02, 1.02, 1.02);
+        transform: scale3d(1.02, 1.02, 1.02);
+    }
+    100% {
+        -webkit-transform: scale3d(1, 1, 1);
+        -moz-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1)
+    }
+}
+
+.toast-inner {
+    position: relative;
+    min-width: 60px;
+    margin: 0 auto;
+    padding: 16px 10px;
+    color: #fff;
+    font-size: 10px;
+    border-radius: 4px;
+    word-break: break-all;
+    word-wrap: break-word;
+    background: rgba(0, 0, 0, .8);
+}
+
+.toast-inner.single {
+    font-size: 12px;
+    padding: 10px;
+}
+
+.toast-inner.single .toast-icon {
+    display: none;
+}
+
+.toast-icon {
+    position: relative;
+    width: 28px;
+    height: 28px;
+    margin: 0 auto 10px;
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAMAAAD04JH5AAAAq1BMVEUAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Nr6iZAAAAOHRSTlMAIgb04xAJh3VG076fHNx++cmOXUCxGgvuVkvv17Ul6KuRijDEauVfFU/Ol25k4Kg48WEo/CzLo6HMMXUAAAWOSURBVHjaxNjbcqowFAbgn9hIEVHxBB42WqmnWq3Wtnu9/5PtqUkYcRBByea76UVn+q8SslYC7sL3HfPDri38A9HBX9TsD7Oz5/gv+oO2PaFEE7s96EMnZrXHdMO4bTFowaz6iDIZ1TXUYJgLymFhGihS9w/l9qeLogx/6ELFrTeXVuhwD/C4E1rLZt2t0IWfIYpguRRT2ywDJAqWmxrFuBYeFcQefqu3dZDK2fZasYUI8Iiqef7X7A5HBnxpn9dsVnG3boMi/sxAZsbMp0iji/uwNkV27x5y8d53FHlhuMOxRsrTnCE3Nn8ixUR+gwpJlWYVd6k21d/wkduMlKmDuznTOwvwptHTX+Mh69M6zJDPyiVpyvEg/uL7eV/C/lit/ifKYDTUBg5RBkflv3KUYaWef6+KMlRdEuooRy/qXeVQ7b+JcgxImKEcR9m7/6IcTM4/m0Gb7vPw5gvQ4NCm/ntKY9eKk/03hDZ1+tVBoqrsgJ/QZpP6ipty/kGbDaX9i0FLzH8OXV5IcFlaC1xDF9XjfjiSWLoXwCThjSORK3aAA02aKn+FREPNI0Dl11ZI9ibewCr0eCZhvErvQXMI2vL76aeAHYMW7yQ0HEjs4qhs0Mk7tJhH+fGWsDAutsjIgw5bEnYGIn781MUmGk9hnyQ8GbgsYMLiezCABssvOlkECV15GBuSNjQYyPzJEefY6/nJm4nvj0tAX/434pbirWNnY6DFUbh160o+uPiNdTameijcUOb74bXO08YvcRfbassfhVc35xgA+nTioGCWyt8jgUMn/egyUkPBuvKOcdgjkbgCDKI9udGUX+mmHhBfALzKo3Kh9rfy0RHfIAAcNLTB/UHmW7gmEAukJmGl2PwRnbQsXCeekSEHgYs03gp5hCp/iBSuHAfzm99DWP2LXo0c+b7MX2e4ps0xu3kabcppmtH3hE6+BlnOqTNMb26CN8pTwTFbvtoGU9hiKqQuVo4KgoXM7yCVmoG27Ehh6neb7BUET5T1jh3KDjy5PQmeM1dgqPwtbnLESQliy3AUUYGzo+wXDC5GlewHHgqowGlQjvO9JzsgnQCPV9DPlQ+ZrH48XkH0kf9f91bYmyAMREubFqLLtljBaCSbSqJxS/hg2Pj/v2wfoHfZ0MS7Qxv3fgB9UCh3797LFIUAbIGUwWFCEVlxC+AlpDCQr48vIXyGMgb2SBO58TOEg0jEwH4RRWY8iOAoljCwYcgwU4grj2L4GQkYLKowolUEhJ8R/I7ZDFxY/4MhG22hIGEzcFPGkAcLEijJ6Awk62NJBkUpk4EODotaUYBFKZTlHAawPllixbIcGxMOA52H9YkCGzYm2JpxGIT7zzVTO9/Qm1NkgCip62Nzym3PM+n62J6jQMFlMHVs9XAtkGgywfoo0bBFKmRQMfRVFKlEMl0mMBl4kOkkQqU/rjdMfXmKpzdKtYm6GxKQallitRwpiNUcuV6OBcj1rIGFHJ+DPS8JIxs5dNdClrKhlXyGM+eN7eRwXQ9//C2s39G78gJT6uEjMIW6OQoDD4AzvJbjvT3fCpW3HN8PN7scymsEA4MAtnsDX088C4ccNTSxEUwsOMZ8dpFsPDsDZ1AUI5PtH/ImkpVL923kxEUys333e3yKYudDr/QyiqERfSyzSJbONLSRkUytT8HH5aLYel0OPp4oxmZbgY8lirV7BxdMopjb9wZ8THR7fy2399cQOjoQOod8xIBDj3zBjXgUgvqvbgO2UUMurVkqMpoRYz6ThnUDowWdZm6MqFeaUOKRgqiXPOzm/4TdHjnudz7w6C8FHj0h8CiPfPp5U1inlLNFM/eXI5//IfTKiP2+peNrbnp1ffB5pdUAjx/9xvB7dSn8XjHC79z4/76L/5u2NV38f8+M//8Ar2VEAMoaV0wAAAAASUVORK5CYII=") no-repeat center center;
+    background-size: contain;
+}
+
+.toast-txt {
+    line-height: 1;
+    text-align: center;
+}
+
+/*中奖弹框 结束*/
+
+@media only screen and (min-width: 360px) and (max-width: 376px) {
+    .toast-inner {
+        min-width: 81px;
+        padding: 22px 14px;
+        font-size: 14px;
+    }
+
+    .toast-inner.single {
+        font-size: 16px;
+        padding: 14px;
+    }
+
+    .toast-icon {
+        width: 37px;
+        height: 37px;
+        margin: 0 auto 14px;
+    }
+}
+
+@media only screen and (min-width: 377px) and (max-width: 414px) {
+    .toast-inner {
+        min-width: 90px;
+        padding: 24px 16px;
+        font-size: 16px;
+        border-radius: 4px;
+    }
+
+    .toast-inner.single {
+        font-size: 18px;
+        padding: 16px;
+    }
+
+    .toast-icon {
+        width: 42px;
+        height: 42px;
+        margin: 0 auto 16px;
+    }
+}
+
+@media only screen and (device-width: 375px) and (device-height: 690px) and (-webkit-device-pixel-ratio: 3) {
+    .toast-inner {
+        min-width: 90px;
+        padding: 24px 16px;
+        font-size: 16px;
+        border-radius: 4px;
+    }
+
+    .toast-inner.single {
+        font-size: 18px;
+        padding: 16px;
+    }
+
+    .toast-icon {
+        width: 42px;
+        height: 42px;
+        margin: 0 auto 16px;
+    }
+}
+
+@media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+    .toast-inner {
+        min-width: 90px;
+        padding: 24px 16px;
+        font-size: 16px;
+        border-radius: 4px;
+    }
+
+    .toast-inner.single {
+        font-size: 18px;
+        padding: 16px;
+    }
+
+    .toast-icon {
+        width: 42px;
+        height: 42px;
+        margin: 0 auto 16px;
+    }
+}
+
+@media screen and (min-width: 415px) {
+    .toast-inner {
+        min-width: 90px;
+        padding: 24px 16px;
+        font-size: 16px;
+        border-radius: 4px;
+    }
+
+    .toast-inner.single {
+        font-size: 18px;
+        padding: 16px;
+    }
+
+    .toast-icon {
+        width: 42px;
+        height: 42px;
+        margin: 0 auto 16px;
+    }
+}
